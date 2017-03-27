@@ -1,13 +1,51 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="sapotero.farm.view.fragments.MainStatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/md_grey_200"
+    >
 
-</FrameLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="200dp"
+        android:layout_height="match_parent">
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_height="400dp"
+            android:background="@color/md_grey_50"
+            android:layout_margin="16dp"
+            android:layout_width="400dp">
+
+            <TextView
+                android:paddingTop="24dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textSize="24sp"
+                android:text="Доля рынка западных производителей"
+                />
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>
+
+</RelativeLayout>

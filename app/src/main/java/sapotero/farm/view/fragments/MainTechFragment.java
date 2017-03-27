@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
 import sapotero.farm.R;
 
 public class MainTechFragment extends Fragment {
@@ -18,14 +19,6 @@ public class MainTechFragment extends Fragment {
   public MainTechFragment() {
   }
 
-  public static MainTechFragment newInstance(String param1, String param2) {
-    MainTechFragment fragment = new MainTechFragment();
-    Bundle args = new Bundle();
-
-    fragment.setArguments(args);
-    return fragment;
-  }
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -34,8 +27,12 @@ public class MainTechFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_main_stat, container, false);
+    View view = inflater.inflate(R.layout.fragment_main_stat, container, false);
+    ButterKnife.bind(view);
+
+
+
+    return view;
   }
 
   public void onButtonPressed(Uri uri) {
@@ -50,8 +47,7 @@ public class MainTechFragment extends Fragment {
     if (context instanceof OnFragmentInteractionListener) {
       mListener = (OnFragmentInteractionListener) context;
     } else {
-      throw new RuntimeException(context.toString()
-        + " must implement OnFragmentInteractionListener");
+      throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
     }
   }
 
@@ -62,7 +58,6 @@ public class MainTechFragment extends Fragment {
   }
 
   public interface OnFragmentInteractionListener {
-    // TODO: Update argument type and name
     void onFragmentInteraction(Uri uri);
   }
 }
