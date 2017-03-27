@@ -1,6 +1,9 @@
 package sapotero.farm.view.activities;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,9 +20,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import sapotero.farm.R;
 import sapotero.farm.application.FarmApplication;
+import sapotero.farm.view.adapter.MainPageTabAdapter;
+import sapotero.farm.view.fragments.MainMarketFragment;
+import sapotero.farm.view.fragments.MainStatFragment;
+import sapotero.farm.view.fragments.MainTechFragment;
+import sapotero.farm.view.fragments.MainVendorFragment;
 
-public class MainActivity extends AppCompatActivity {
-  @BindView(R.id.toolbar) Toolbar toolbar;
+public class MainActivity extends AppCompatActivity implements MainMarketFragment.OnFragmentInteractionListener, MainStatFragment.OnFragmentInteractionListener, MainTechFragment.OnFragmentInteractionListener, MainVendorFragment.OnFragmentInteractionListener {
+  @BindView(R.id.activity_main_toolbar) Toolbar toolbar;
+  @BindView(R.id.activity_main_view_pager) ViewPager viewPager;
+  @BindView(R.id.activity_main_tabs) TabLayout tabLayout;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     initDrawer();
     initToolbar();
+
+    initTabs();
   }
 
   private void initDrawer() {
@@ -67,5 +80,34 @@ public class MainActivity extends AppCompatActivity {
 
   private void initToolbar() {
     toolbar.setTitle("Новости и аналитика");
+  }
+
+  private void initTabs() {
+    MainPageTabAdapter adapter = new MainPageTabAdapter( getSupportFragmentManager() );
+    viewPager.setAdapter(adapter);
+    viewPager.setOffscreenPageLimit(10);
+
+    tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+      @Override
+      public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem( tab.getPosition() );
+      }
+
+      @Override
+      public void onTabUnselected(TabLayout.Tab tab) {
+      }
+
+      @Override
+      public void onTabReselected(TabLayout.Tab tab) {
+      }
+    });
+
+    tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+    tabLayout.setupWithViewPager(viewPager);
+  }
+
+  @Override
+  public void onFragmentInteraction(Uri uri) {
+
   }
 }
